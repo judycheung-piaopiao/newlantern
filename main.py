@@ -12,6 +12,7 @@ class Prediction(BaseModel):
 @app.post("/predict")
 async def predict(request: Request):
     data = await request.json()
+    print("Received data:", data, file=sys.stderr)
     predictions = []
     for case in data.get("cases", []):
         case_id = case["case_id"]

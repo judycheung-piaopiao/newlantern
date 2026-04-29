@@ -1,10 +1,11 @@
 from fastapi import FastAPI, Request
-
+import sys
 app = FastAPI()
 
 @app.post("/predict")
 async def predict(request: Request):
     data = await request.json()
+    print("Received data:", data, file=sys.stderr)
     predictions = []
     for case in data.get("cases", []):
         case_id = case.get("case_id", "")

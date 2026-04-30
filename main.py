@@ -10,8 +10,7 @@ async def predict(request: Request):
     predictions = []
     for case in data.get("cases", []):
         case_id = case.get("case_id", "")
-        # 兼容字段名
-        prevs = case.get("previous_examinations") or case.get("previous_studies") or []
+        prevs = case.get("prior_studies", [])
         if not isinstance(prevs, list):
             prevs = []
         for i, prev in enumerate(prevs):
